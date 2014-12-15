@@ -129,6 +129,15 @@ gulp.task('coffee', function() {
 });
 
 
+
+
+gulp.task('coffee', function() {
+    return gulp.src(path.coffee.default.src)
+        .pipe(plugins.coffee(options.coffee.general))
+        .pipe(gulp.dest(path.coffee.default.dest));
+});
+
+
 gulp.task('lint', function() {
     return gulp.src(path.javascript.lint)
         .pipe(plugins.jshint(options.js.lint.jshintrc))
@@ -184,7 +193,7 @@ gulp.task('test', function () {
 */
 
 
-
+/*
 var gulpCssVersioner = require('./dist/package/index.js')
 
 gulp.task('versioner', function () {
@@ -193,3 +202,4 @@ gulp.task('versioner', function () {
             .pipe(gulp.dest('test/css/versioned/'))
 });
 
+*/
