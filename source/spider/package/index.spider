@@ -1,4 +1,16 @@
 
-fn TimeMachine(pilot) {
-  this.pilot = pilot
-}
+use :node;
+
+/*
+ * Dependencies.
+ */
+ 
+var chalk = require('chalk');
+
+
+/*
+ * requires.
+ */
+
+var package = require('./package.json');
+

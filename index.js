@@ -1,31 +1,76 @@
+
 #!/usr/bin/env node
 
-/* dependencies */
+
+/*
+ * Dependencies.
+ */
+ 
 var chalk = require('chalk');
 
-var package = require('./package.json')
-	, nameDependencies = ['devDependencies', 'dependencies', 'peerDependencies', 'bundleDependencies', 'optionalDependencies']
-	, dependencies = []
-	, counter = 0;
 
-for (var i=0; i<nameDependencies.length; i++) {
-	var dependencyObject = package[nameDependencies[i]];
-	if (dependencyObject !== undefined && Object.keys(dependencyObject).length !== 0){
-		dependencies.push(dependencyObject);
-	}
-}
+/*
+ * requires.
+ */
 
-for (var j=0; j<dependencies.length; j++) {
-	var dependency = dependencies[j];
-	console.log("\n" + " " + nameDependencies[j] + ':' + "\n");
-	
-	for (var key in dependency) {
-		if (dependency.hasOwnProperty(key)) {
-			counter++;
-			console.log('  ' + chalk.cyan(' ' + key));
+var package = require('./package.json');
+
+
+/*
+ * Library.
+ */
+
+Dependencies = function(opts) {
+	this.settings = opts || {};
+	this.ArrayDependencies = [];
+	this.counter = 0;
+	this.output = "";	
+	this.nameDependencies = ['devDependencies', 'dependencies', 'peerDependencies', 'bundleDependencies', 'optionalDependencies'];
+
+	this.pushDependencies();
+	this.readDependencies();
+	this.writeDependencies();
+	return this;
+};
+
+
+Dependencies.prototype.pushDependencies = function() {
+	for (var i=0; i<this.nameDependencies.length; i++) {
+		var dependencyObject = package[this.nameDependencies[i]];
+		if (dependencyObject !== undefined && Object.keys(dependencyObject).length !== 0){
+			this.ArrayDependencies.push(dependencyObject);
 		}
 	}
-}
+};
 
-console.log("\n" + " . . . . . . . . . . . . . . . " + "\n");
-console.log(chalk.green.bold(' We have found ' + counter +' dependencies!') + "\n");
+
+Dependencies.prototype.readDependencies = function() {
+	for (var j=0; j<this.ArrayDependencies.length; j++) {
+		var dependency = this.ArrayDependencies[j];
+
+		this.output += "\n" + " " + this.nameDependencies[j] + ": " + "\n";
+		
+		for (var key in dependency) {
+			if (dependency.hasOwnProperty(key)) {
+				this.counter++;
+				this.output += "  " + chalk.cyan(" " + key) + "\n";
+			}
+		}
+	}
+};
+
+
+Dependencies.prototype.writeDependencies = function() {
+	this.output += "\n" + " - - - - - - - - - - - - - - - - - - - -" + "\n";
+	this.output += chalk.green.bold(' We have found ' + this.counter +' dependencies!') + "\n";
+	console.log(this.output);
+};
+
+
+/*
+ * Expose library.
+ */
+
+module.exports = Dependencies;
+
+var dep = new Dependencies();
