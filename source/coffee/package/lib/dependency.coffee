@@ -8,12 +8,11 @@ List dependencies of npm projects.
 # Module dependencies.
 ###
 
-console.log(__dirname)
+
 
 chalk       = require('chalk')
-packageJson = require('./package.json')
+fs          = require('fs')
 
-console.log(packageJson)
 
 ###
 # Library.
@@ -27,16 +26,20 @@ Dependencies = (opts) ->
 	@output = ""
 	@namesOfDependencies = ['devDependencies', 'dependencies', 'peerDependencies', 'bundleDependencies', 'optionalDependencies']
 
+	@readFile('./package.json')
 	@getDependencies()
 	@readDependencies()
 	@writeDependencies()
 
 	return @
 
+Dependencies::readFile = (filepath) ->
+	@packageJson = JSON.parse(fs.readFileSync(filepath, 'utf8'))
+	return
 
 Dependencies::getDependencies = () ->
 	for dependencyName in @namesOfDependencies
-		@pushDependencies(packageJson[dependencyName])
+		@pushDependencies(@packageJson[dependencyName])
 	return
 
 

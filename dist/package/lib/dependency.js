@@ -8,15 +8,11 @@ List dependencies of npm projects.
 /*
  * Module dependencies.
  */
-var Dependencies, chalk, packageJson;
-
-console.log(__dirname);
+var Dependencies, chalk, fs;
 
 chalk = require('chalk');
 
-packageJson = require('./package.json');
-
-console.log(packageJson);
+fs = require('fs');
 
 
 /*
@@ -29,10 +25,15 @@ Dependencies = function(opts) {
   this.counter = 0;
   this.output = "";
   this.namesOfDependencies = ['devDependencies', 'dependencies', 'peerDependencies', 'bundleDependencies', 'optionalDependencies'];
+  this.readFile('./package.json');
   this.getDependencies();
   this.readDependencies();
   this.writeDependencies();
   return this;
+};
+
+Dependencies.prototype.readFile = function(filepath) {
+  this.packageJson = JSON.parse(fs.readFileSync(filepath, 'utf8'));
 };
 
 Dependencies.prototype.getDependencies = function() {
@@ -40,7 +41,7 @@ Dependencies.prototype.getDependencies = function() {
   _ref = this.namesOfDependencies;
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
     dependencyName = _ref[_i];
-    this.pushDependencies(packageJson[dependencyName]);
+    this.pushDependencies(this.packageJson[dependencyName]);
   }
 };
 
