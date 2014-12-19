@@ -10,10 +10,12 @@ index
 
 Dependency = require('./lib/dependency')
 
+dependency = new Dependency({})
+
+
+
 ###
 # Expose library.
 ###
 
-module.exports = (options) ->
-	dependency = new Dependency(options)
-	dependency
+module.exports = dependency

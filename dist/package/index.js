@@ -8,17 +8,15 @@ index
 /*
  * Module dependencies.
  */
-var Dependency;
+var Dependency, dependency;
 
 Dependency = require('./lib/dependency');
+
+dependency = new Dependency({});
 
 
 /*
  * Expose library.
  */
 
-module.exports = function(options) {
-  var dependency;
-  dependency = new Dependency(options);
-  return dependency;
-};
+module.exports = dependency;

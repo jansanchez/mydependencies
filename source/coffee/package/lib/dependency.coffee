@@ -8,8 +8,12 @@ List dependencies of npm projects.
 # Module dependencies.
 ###
 
+console.log(__dirname)
+
 chalk       = require('chalk')
 packageJson = require('./package.json')
+
+console.log(packageJson)
 
 ###
 # Library.
@@ -73,5 +77,4 @@ Dependencies::writeDependencies = () ->
 ###
 
 module.exports = Dependencies
-
 

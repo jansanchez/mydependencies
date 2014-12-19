@@ -10,9 +10,13 @@ List dependencies of npm projects.
  */
 var Dependencies, chalk, packageJson;
 
+console.log(__dirname);
+
 chalk = require('chalk');
 
 packageJson = require('./package.json');
+
+console.log(packageJson);
 
 
 /*
