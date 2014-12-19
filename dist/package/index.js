@@ -8,9 +8,9 @@ index
 /*
  * Module dependencies.
  */
-var GulpCssUrlVersioner;
+var Dependency;
 
-GulpCssUrlVersioner = require('./lib/gulp-css-url-versioner');
+Dependency = require('./lib/dependency');
 
 
 /*
@@ -18,7 +18,7 @@ GulpCssUrlVersioner = require('./lib/gulp-css-url-versioner');
  */
 
 module.exports = function(options) {
-  var gulpCssUrlVersioner;
-  gulpCssUrlVersioner = new GulpCssUrlVersioner(options);
-  return gulpCssUrlVersioner;
+  var dependency;
+  dependency = new Dependency(options);
+  return dependency;
 };

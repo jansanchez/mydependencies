@@ -12,5 +12,65 @@ var chalk = require('chalk');
  * requires.
  */
 
-var package = require('./package.json');
+var packageJson = require('./package.json');
 
+
+/*
+ * Library.
+ */
+
+
+fn Dependencies(opts) {
+	this.settings = opts || {};
+	this.ArrayDependencies = [];
+	this.counter = 0;
+	this.output = "";	
+	this.nameDependencies = ['devDependencies', 'dependencies', 'peerDependencies', 'bundleDependencies', 'optionalDependencies'];
+
+	this.pushDependencies = fn () {
+		var dependencyObject = {};
+
+		for var i = 0; i<this.nameDependencies.length; i++ {
+			dependencyObject = packageJson[this.nameDependencies[i]];
+			if (dependencyObject != undefined && Object.keys(dependencyObject).length != 0){
+				this.ArrayDependencies.push(dependencyObject);
+			}
+		}
+	};
+
+	this.readDependencies = fn () {
+		for var j=0; j<this.ArrayDependencies.length; j++ {
+			var dependency = this.ArrayDependencies[j];
+
+			this.output += "\n" + " " + this.nameDependencies[j] + ": " + "\n";
+
+			for key in dependency {
+				if (dependency.hasOwnProperty(key)) {
+					this.counter++;
+					this.output += "  " + chalk.cyan(" " + key) + "\n";
+				}
+			}
+		}
+	};
+
+	this.writeDependencies = fn () {
+		this.output += "\n" + " - - - - - - - - - - - - - - - - - - - -" + "\n";
+		this.output += chalk.green.bold(' We have found ' + this.counter +' dependencies!') + "\n";
+		console.log(this.output);
+	};	
+
+	this.pushDependencies();
+	this.readDependencies();
+	this.writeDependencies();
+
+	return this;
+}
+
+
+/*
+ * Expose library.
+ */
+
+module.exports = Dependencies;
+
+var dep = new Dependencies();

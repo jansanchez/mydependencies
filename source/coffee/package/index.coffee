@@ -8,12 +8,12 @@ index
 # Module dependencies.
 ###
 
-GulpCssUrlVersioner = require('./lib/gulp-css-url-versioner')
+Dependency = require('./lib/dependency')
 
 ###
 # Expose library.
 ###
 
 module.exports = (options) ->
-	gulpCssUrlVersioner = new GulpCssUrlVersioner(options)
-	gulpCssUrlVersioner
+	dependency = new Dependency(options)
+	dependency
