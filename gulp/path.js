@@ -12,13 +12,15 @@ Path.src.coffee = {};
 Path.src.coffee.folder = Path.src.folder + 'coffee/'
 Path.src.coffee.package = Path.src.coffee.folder + 'package/';
 Path.src.coffee.test = Path.src.coffee.folder + 'test/';
+Path.src.coffee.bin = Path.src.coffee.folder + 'bin/';
+
 
 Path.dest = {};
 Path.dest.folder = '';
 Path.dest.js = {};
 Path.dest.js.package = Path.dest.folder + 'dist/';
 Path.dest.js.test    = Path.dest.folder + 'test/';
-
+Path.dest.js.bin    = Path.dest.folder + 'bin/';
 
 /* Coffee Path */
 Path.coffee = {
@@ -45,6 +47,14 @@ Path.coffee = {
 			'!' + Path.src.coffee.test + '**/_*.coffee'
 		],
 		dest: Path.dest.js.test
+	},
+	bin : {
+		src: [
+			Path.src.coffee.bin + '**/*.coffee',
+			'!' + Path.src.coffee.bin + '_**/*.coffee',
+			'!' + Path.src.coffee.bin + '**/_*.coffee'
+		],
+		dest: Path.dest.js.bin
 	}
 
 };
@@ -54,11 +64,13 @@ Path.coffee = {
 Path.javascript = {
 	lint: [
 		Path.dest.js.package + '**/*.js',
-		Path.dest.js.test + '**/*.js'
+		Path.dest.js.test + '**/*.js',
+		Path.dest.js.bin + '**/*.js'
 	],
 	complexity: [
 		Path.dest.js.package + '**/*.js',
-		Path.dest.js.test + '**/*.js'
+		Path.dest.js.test + '**/*.js',
+		Path.dest.js.bin + '**/*.js'
 	]
 };
 
@@ -72,6 +84,10 @@ Path.clean = {
 		test: [
 			Path.dest.js.test + '**/*.js',
 			Path.dest.folder + 'dist/test/'
+		],
+		bin: [
+			Path.dest.js.bin + '**/*.js',
+			Path.dest.folder + 'dist/bin/'
 		]
 	}
 };
@@ -86,6 +102,14 @@ Path.copy = {
 				Path.dest.folder + 'dist/test/**/*.*'
 			],
 			dest: Path.dest.js.test
+			
+		},
+		bin: {
+			base: Path.dest.folder,
+			src: [
+				Path.dest.folder + 'dist/bin/**/*.*'
+			],
+			dest: Path.dest.js.bin
 			
 		}
 	}

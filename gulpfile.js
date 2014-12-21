@@ -27,7 +27,7 @@ var coffeeTasks = ['js'];
 
 
 /*!!
-* 
+* mydependencies
 * Tareas para changelog, tag
 *
 * tarea principal: gulp
@@ -192,14 +192,3 @@ gulp.task('test', function () {
 * Task for test my package
 */
 
-
-/*
-var gulpCssVersioner = require('./dist/package/index.js')
-
-gulp.task('versioner', function () {
-    return gulp.src(['test/css/test.css'])
-            .pipe(gulpCssVersioner())
-            .pipe(gulp.dest('test/css/versioned/'))
-});
-
-*/
