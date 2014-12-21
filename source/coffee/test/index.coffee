@@ -14,7 +14,7 @@ dependencies = require('../dist/package/index')
 # Specs.
 ###
 
-describe('dependencies', () ->
+describe('Index', () ->
 	options = {}
 	
 	beforeEach( () ->
@@ -24,7 +24,7 @@ describe('dependencies', () ->
 
 	describe('Instanciable', () ->
 
-		it('dependencies.output not should be empty.', () ->
+		it('dependencies.output should not be empty.', () ->
 			dependencies.should.not.be.empty
 		)
 

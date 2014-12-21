@@ -17,23 +17,45 @@ Dependencies = require('../../dist/package/lib/dependencies')
 dependencies = null
 data = JSON.parse(fs.readFileSync('./package.json', 'utf8'))
 
+
+###
+# Instantiating.
+###
+
+dependencies = new Dependencies()
+
+
 ###
 # Specs.
 ###
 
-describe('dependencies', () ->
+describe('Dependencies', () ->
 	options = {}
 	
 	beforeEach( () ->
-		dependencies = new Dependencies()
+		
 		return
 	)
 
 	describe('Output', () ->
 
-		it('dependencies.output not should be empty.', () ->
+		it('dependencies.output should not be empty.', () ->
 			dependencies.output.should.not.be.empty
 		)
+
+		it('dependencies.counter should not be zero.', () ->
+			dependencies.counter.should.not.be.equal(0)
+		)
+
+		it('dependencies.ArrayDependencies should not be equal to zero.', () ->
+			dependencies.ArrayDependencies.length.should.not.be.equal(0)
+		)
+		
+		it('dependencies.packageJson type should be equal to "object".', () ->
+			type = typeof dependencies.packageJson
+			type.should.be.equal("object")
+		)
+		
 
 		return
 	)

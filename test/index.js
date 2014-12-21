@@ -17,12 +17,12 @@ dependencies = require('../dist/package/index');
  * Specs.
  */
 
-describe('dependencies', function() {
+describe('Index', function() {
   var options;
   options = {};
   beforeEach(function() {});
   describe('Instanciable', function() {
-    it('dependencies.output not should be empty.', function() {
+    it('dependencies.output should not be empty.', function() {
       return dependencies.should.not.be.empty;
     });
   });
