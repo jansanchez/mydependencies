@@ -18,7 +18,13 @@ npm install -g mydependencies
 dependencies
 ```
 
+```
+dependencies --dev
+```
 
+```
+dependencies --dep
+```
 
 
 [downloads-image]: http://img.shields.io/npm/dm/mydependencies.svg
@@ -36,4 +42,3 @@ dependencies
 
 [codeclimate-url]: https://codeclimate.com/github/jansanchez/mydependencies
 [codeclimate-image]: https://codeclimate.com/github/jansanchez/mydependencies/badges/gpa.svg
-
