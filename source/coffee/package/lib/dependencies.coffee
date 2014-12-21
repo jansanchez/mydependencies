@@ -4,11 +4,10 @@ List dependencies of npm projects.
 @author Jan Sanchez
 ###
 
+
 ###
 # Module dependencies.
 ###
-
-
 
 chalk       = require('chalk')
 fs          = require('fs')
@@ -42,7 +41,6 @@ Dependencies::getDependencies = () ->
 		@pushDependencies(@packageJson[dependencyName])
 	return
 
-
 Dependencies::pushDependencies = (dependencyObject) ->
 	if dependencyObject is undefined
 		return false
@@ -51,13 +49,11 @@ Dependencies::pushDependencies = (dependencyObject) ->
 	@ArrayDependencies.push(dependencyObject)
 	return
 
-
 Dependencies::readDependencies = () ->
 	for dependency, i in @ArrayDependencies
 		@output += "\n" + " " + @namesOfDependencies[i] + ": " + "\n\n"
 		@readKeys(dependency)
 	return
-
 
 Dependencies::readKeys = (dependency) ->
 	for key of dependency
@@ -66,13 +62,11 @@ Dependencies::readKeys = (dependency) ->
 			@output += "  " + chalk.cyan(" " + key) + "\n"
 	return
 
-
 Dependencies::writeDependencies = () ->
 	@output += "\n" + " - - - - - - - - - - - - - - - - - - - -" + "\n"
 	@output += chalk.green.bold(' We have found ' + @counter + ' dependencies!') + "\n"
 	console.log(@output)
 	return
-
 
 
 ###

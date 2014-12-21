@@ -8,14 +8,19 @@ index
 # Module dependencies.
 ###
 
-Dependency = require('./lib/dependency')
+Dependencies = require('./lib/dependencies')
 
-dependency = new Dependency({})
 
+###
+# Instantiating.
+###
+
+dependencies = new Dependencies({})
 
 
 ###
 # Expose library.
 ###
 
-module.exports = dependency
+module.exports = dependencies
+

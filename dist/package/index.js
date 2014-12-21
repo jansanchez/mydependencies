@@ -8,15 +8,20 @@ index
 /*
  * Module dependencies.
  */
-var Dependency, dependency;
+var Dependencies, dependencies;
 
-Dependency = require('./lib/dependency');
+Dependencies = require('./lib/dependencies');
 
-dependency = new Dependency({});
+
+/*
+ * Instantiating.
+ */
+
+dependencies = new Dependencies({});
 
 
 /*
  * Expose library.
  */
 
-module.exports = dependency;
+module.exports = dependencies;
