@@ -1,16 +1,16 @@
 
 /*
-Test: dependencies
+Test: mydependencies
  */
 
 /*
- * Test dependencies.
+ * requires.
  */
 var Dependencies, data, dependencies, fs;
 
 fs = require('fs');
 
-Dependencies = require('../../dist/package/lib/dependencies');
+Dependencies = require('../../dist/package/lib/mydependencies');
 
 
 /*

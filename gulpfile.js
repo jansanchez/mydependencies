@@ -72,8 +72,13 @@ gulp.task('clean:js:test', function () {
     .pipe(plugins.rimraf(options.clean.general.plugin));
 });
 
+gulp.task('clean:js:bin', function () {
+    return gulp.src(path.clean.js.bin, options.clean.general.src)
+    .pipe(plugins.rimraf(options.clean.general.plugin));
+});
+
 gulp.task('clean:js', function (cb) {
-    return plugins.runSequence(['clean:js:package', 'clean:js:test'], cb);
+    return plugins.runSequence(['clean:js:package', 'clean:js:test', 'clean:js:bin'], cb);
 });
 
 gulp.task('clean', function (cb) {
@@ -93,6 +98,14 @@ gulp.task('copy:js:test', function () {
             base: path.copy.js.test.base
         })
         .pipe(gulp.dest(path.copy.js.test.dest));
+});
+
+
+gulp.task('copy:js:bin', function () {
+    gulp.src(path.copy.js.bin.src, {
+            base: path.copy.js.bin.base
+        })
+        .pipe(gulp.dest(path.copy.js.bin.dest));
 });
 
 
@@ -153,7 +166,7 @@ gulp.task('complexity', function(){
 
 
 gulp.task('js', function(cb) {
-    plugins.runSequence('clean:js', 'coffee', 'copy:js:test', 'clean:js:test', 'lint', 'complexity', cb);
+    plugins.runSequence('clean:js', 'coffee', 'copy:js:test', 'copy:js:bin', 'clean:js:test', 'clean:js:bin', 'lint', 'complexity', cb);
 });
 
 

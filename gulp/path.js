@@ -86,7 +86,6 @@ Path.clean = {
 			Path.dest.folder + 'dist/test/'
 		],
 		bin: [
-			Path.dest.js.bin + '**/*.js',
 			Path.dest.folder + 'dist/bin/'
 		]
 	}

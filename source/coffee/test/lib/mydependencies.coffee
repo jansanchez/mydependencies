@@ -1,14 +1,15 @@
 ###
-Test: dependencies
+Test: mydependencies
 ###
 
 
 ###
-# Test dependencies.
+# requires.
 ###
 
 fs           = require('fs')
-Dependencies = require('../../dist/package/lib/dependencies')
+Dependencies = require('../../dist/package/lib/mydependencies')
+
 
 ###
 # Test variables.

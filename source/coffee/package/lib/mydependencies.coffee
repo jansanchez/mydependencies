@@ -1,6 +1,6 @@
 ###
 List dependencies of npm projects.
-@class Dependency
+@class MyDependencies
 @author Jan Sanchez
 ###
 
@@ -17,31 +17,33 @@ fs          = require('fs')
 # Library.
 ###
 
-Dependencies = (opts) ->
-
-	@settings = opts or {}
+MyDependencies = (opts) ->
+	options = {
+		namesOfMyDependencies: ['devDependencies', 'dependencies', 'peerDependencies', 'bundleDependencies', 'optionalDependencies']
+	}
+	@settings = opts or options
 	@ArrayDependencies = []
 	@counter = 0
 	@output = ""
-	@namesOfDependencies = ['devDependencies', 'dependencies', 'peerDependencies', 'bundleDependencies', 'optionalDependencies']
+	@namesOfMyDependencies = @settings.namesOfMyDependencies
 
 	@readFile('./package.json')
-	@getDependencies()
-	@readDependencies()
-	@writeDependencies()
+	@getMyDependencies()
+	@readMyDependencies()
+	@writeMyDependencies()
 
 	return @
 
-Dependencies::readFile = (filepath) ->
+MyDependencies::readFile = (filepath) ->
 	@packageJson = JSON.parse(fs.readFileSync(filepath, 'utf8'))
 	return
 
-Dependencies::getDependencies = () ->
-	for dependencyName in @namesOfDependencies
-		@pushDependencies(@packageJson[dependencyName])
+MyDependencies::getMyDependencies = () ->
+	for dependencyName in @namesOfMyDependencies
+		@pushMyDependencies(@packageJson[dependencyName])
 	return
 
-Dependencies::pushDependencies = (dependencyObject) ->
+MyDependencies::pushMyDependencies = (dependencyObject) ->
 	if dependencyObject is undefined
 		return false
 	if Object.keys(dependencyObject).length is 0
@@ -49,20 +51,20 @@ Dependencies::pushDependencies = (dependencyObject) ->
 	@ArrayDependencies.push(dependencyObject)
 	return
 
-Dependencies::readDependencies = () ->
+MyDependencies::readMyDependencies = () ->
 	for dependency, i in @ArrayDependencies
-		@output += "\n" + " " + @namesOfDependencies[i] + ": " + "\n\n"
+		@output += "\n" + " " + @namesOfMyDependencies[i] + ": " + "\n\n"
 		@readKeys(dependency)
 	return
 
-Dependencies::readKeys = (dependency) ->
+MyDependencies::readKeys = (dependency) ->
 	for key of dependency
 		if (dependency.hasOwnProperty(key))
 			@counter++
 			@output += "  " + chalk.cyan(" " + key) + "\n"
 	return
 
-Dependencies::writeDependencies = () ->
+MyDependencies::writeMyDependencies = () ->
 	@output += "\n" + " - - - - - - - - - - - - - - - - - - - -" + "\n"
 	@output += chalk.green.bold(' We have found ' + @counter + ' dependencies!') + "\n"
 	console.log(@output)
@@ -73,5 +75,5 @@ Dependencies::writeDependencies = () ->
 # Expose library.
 ###
 
-module.exports = Dependencies
+module.exports = MyDependencies
 

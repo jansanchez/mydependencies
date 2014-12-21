@@ -6,22 +6,22 @@ index
  */
 
 /*
- * Module dependencies.
+ * Module mydependencies.
  */
-var Dependencies, dependencies;
+var MyDependencies, myDependencies;
 
-Dependencies = require('./lib/dependencies');
+MyDependencies = require('./lib/mydependencies');
 
 
 /*
  * Instantiating.
  */
 
-dependencies = new Dependencies({});
+myDependencies = new MyDependencies();
 
 
 /*
  * Expose library.
  */
 
-module.exports = dependencies;
+module.exports = myDependencies;

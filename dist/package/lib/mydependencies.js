@@ -1,14 +1,14 @@
 
 /*
 List dependencies of npm projects.
-@class Dependency
+@class MyDependencies
 @author Jan Sanchez
  */
 
 /*
  * Module dependencies.
  */
-var Dependencies, chalk, fs;
+var MyDependencies, chalk, fs;
 
 chalk = require('chalk');
 
@@ -19,33 +19,37 @@ fs = require('fs');
  * Library.
  */
 
-Dependencies = function(opts) {
-  this.settings = opts || {};
+MyDependencies = function(opts) {
+  var options;
+  options = {
+    namesOfMyDependencies: ['devDependencies', 'dependencies', 'peerDependencies', 'bundleDependencies', 'optionalDependencies']
+  };
+  this.settings = opts || options;
   this.ArrayDependencies = [];
   this.counter = 0;
   this.output = "";
-  this.namesOfDependencies = ['devDependencies', 'dependencies', 'peerDependencies', 'bundleDependencies', 'optionalDependencies'];
+  this.namesOfMyDependencies = this.settings.namesOfMyDependencies;
   this.readFile('./package.json');
-  this.getDependencies();
-  this.readDependencies();
-  this.writeDependencies();
+  this.getMyDependencies();
+  this.readMyDependencies();
+  this.writeMyDependencies();
   return this;
 };
 
-Dependencies.prototype.readFile = function(filepath) {
+MyDependencies.prototype.readFile = function(filepath) {
   this.packageJson = JSON.parse(fs.readFileSync(filepath, 'utf8'));
 };
 
-Dependencies.prototype.getDependencies = function() {
+MyDependencies.prototype.getMyDependencies = function() {
   var dependencyName, _i, _len, _ref;
-  _ref = this.namesOfDependencies;
+  _ref = this.namesOfMyDependencies;
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
     dependencyName = _ref[_i];
-    this.pushDependencies(this.packageJson[dependencyName]);
+    this.pushMyDependencies(this.packageJson[dependencyName]);
   }
 };
 
-Dependencies.prototype.pushDependencies = function(dependencyObject) {
+MyDependencies.prototype.pushMyDependencies = function(dependencyObject) {
   if (dependencyObject === void 0) {
     return false;
   }
@@ -55,17 +59,17 @@ Dependencies.prototype.pushDependencies = function(dependencyObject) {
   this.ArrayDependencies.push(dependencyObject);
 };
 
-Dependencies.prototype.readDependencies = function() {
+MyDependencies.prototype.readMyDependencies = function() {
   var dependency, i, _i, _len, _ref;
   _ref = this.ArrayDependencies;
   for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
     dependency = _ref[i];
-    this.output += "\n" + " " + this.namesOfDependencies[i] + ": " + "\n\n";
+    this.output += "\n" + " " + this.namesOfMyDependencies[i] + ": " + "\n\n";
     this.readKeys(dependency);
   }
 };
 
-Dependencies.prototype.readKeys = function(dependency) {
+MyDependencies.prototype.readKeys = function(dependency) {
   var key;
   for (key in dependency) {
     if (dependency.hasOwnProperty(key)) {
@@ -75,7 +79,7 @@ Dependencies.prototype.readKeys = function(dependency) {
   }
 };
 
-Dependencies.prototype.writeDependencies = function() {
+MyDependencies.prototype.writeMyDependencies = function() {
   this.output += "\n" + " - - - - - - - - - - - - - - - - - - - -" + "\n";
   this.output += chalk.green.bold(' We have found ' + this.counter + ' dependencies!') + "\n";
   console.log(this.output);
@@ -86,4 +90,4 @@ Dependencies.prototype.writeDependencies = function() {
  * Expose library.
  */
 
-module.exports = Dependencies;
+module.exports = MyDependencies;
