@@ -9,7 +9,7 @@ var Path = {};
 
 Path.src = { folder: 'source/' };
 Path.src.coffee = {};
-Path.src.coffee.folder = Path.src.folder + 'coffee/'
+Path.src.coffee.folder = Path.src.folder + 'coffee/';
 Path.src.coffee.package = Path.src.coffee.folder + 'package/';
 Path.src.coffee.test = Path.src.coffee.folder + 'test/';
 Path.src.coffee.bin = Path.src.coffee.folder + 'bin/';
