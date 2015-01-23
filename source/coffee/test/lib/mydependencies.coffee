@@ -56,10 +56,20 @@ describe('Dependencies', () ->
 			type = typeof dependencies.packageJson
 			type.should.be.equal("object")
 		)
-		
 
 		return
 	)
+
+
+	describe('Other Scenarios', () ->
+
+		it('dependencies.pushMyDependencies.', () ->
+			dependencies.pushMyDependencies({}).should.be.equal(false)
+		)
+
+		return
+	)
+	
 
 
 	return
