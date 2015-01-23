@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jansanchez/dependency-reader.git"
+    "url": "https://github.com/jansanchez/mydependencies.git"
   },
   "keywords": [
     "dependency",
@@ -23,7 +23,7 @@
   "author": "Jan Sanchez <joejansanchez@gmail.com> (frontend-labs.com/author/jansanchez)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jansanchez/dependency-reader/issues"
+    "url": "https://github.com/jansanchez/mydependencies/issues"
   },
   "devDependencies": {
     "codeclimate-test-reporter": "~0.0.4",

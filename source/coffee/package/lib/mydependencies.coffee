@@ -35,6 +35,7 @@ MyDependencies = (opts) ->
 	return @
 
 MyDependencies::readFile = (filepath) ->
+	console.log(process.cwd() + '/' + filepath)
 	@packageJson = JSON.parse(fs.readFileSync(process.cwd() + '/' + filepath, 'utf8'))
 	return
 
