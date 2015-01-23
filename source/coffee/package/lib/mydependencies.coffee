@@ -27,7 +27,7 @@ MyDependencies = (opts) ->
 	@output = ""
 	@namesOfMyDependencies = @settings.namesOfMyDependencies
 
-	@readFile('./package.json')
+	@readFile('package.json')
 	@getMyDependencies()
 	@readMyDependencies()
 	@writeMyDependencies()
@@ -35,7 +35,7 @@ MyDependencies = (opts) ->
 	return @
 
 MyDependencies::readFile = (filepath) ->
-	@packageJson = JSON.parse(fs.readFileSync(filepath, 'utf8'))
+	@packageJson = JSON.parse(fs.readFileSync(process.cwd() + '/' + filepath, 'utf8'))
 	return
 
 MyDependencies::getMyDependencies = () ->
