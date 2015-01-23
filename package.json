@@ -1,6 +1,6 @@
 {
   "name": "mydependencies",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Reader dependencies from package.json on terminal",
   "main": "dist/package/index",
   "scripts": {
