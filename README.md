@@ -15,15 +15,15 @@ npm install -g mydependencies
 ### How to use:
 
 ```
-dependencies
+mydependencies
 ```
 
 ```
-dependencies --dev
+mydependencies --dev
 ```
 
 ```
-dependencies --dep
+mydependencies --dep
 ```
 
 
