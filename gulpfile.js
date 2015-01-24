@@ -118,34 +118,6 @@ gulp.task('copy:js:bin', function () {
 
 gulp.task('coffee', function() {
     return gulp.src(path.coffee.default.src)
-    .pipe(plugins.coffee(options.coffee.general).on('error', function(err){
-        console.log('');
-        console.log(err.name + " in " + err.plugin);
-        console.log('Message: ' + err.message);
-        console.log('Stack: ' + err.stack);
-
-        var isLinux = /^linux/.test(process.platform);
-        if (isLinux){
-            notifier.notify({
-                title: 'Plugin: ' + err.plugin,
-                message: err.name + ' in ' + err.plugin,
-                contentImage: __dirname + "/gulp/img/logo.png",
-                appIcon: __dirname + "/gulp/img/logo.png",
-                open: "file://" + __dirname + "/gulp/img/logo.png"
-            }, function(error, response) {
-                console.log(response);
-            });
-        }
-
-    }))
-    .pipe(gulp.dest(path.coffee.default.dest));
-});
-
-
-
-
-gulp.task('coffee', function() {
-    return gulp.src(path.coffee.default.src)
         .pipe(plugins.coffee(options.coffee.general))
         .pipe(gulp.dest(path.coffee.default.dest));
 });
