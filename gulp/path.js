@@ -71,7 +71,10 @@ Path.javascript = {
 		Path.dest.js.package + '**/*.js',
 		Path.dest.js.test + '**/*.js',
 		Path.dest.js.bin + '**/*.js'
-	]
+	],
+	shebang: {
+		src: ['./source/resources/shebang-line.js', Path.dest.js.bin + 'mydependencies.js']
+	}
 };
 
 

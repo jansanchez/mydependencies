@@ -136,9 +136,14 @@ gulp.task('complexity', function(){
     .pipe(plugins.complexity({breakOnErrors: false, halstead: [10, 13, 20]}));
 });
 
+gulp.task('shebang', function() {
+    return gulp.src(path.javascript.shebang.src)
+        .pipe(plugins.concat('mydependencies.js'))
+        .pipe(gulp.dest(path.dest.js.bin));
+});
 
 gulp.task('js', function(cb) {
-    plugins.runSequence('clean:js', 'coffee', 'copy:js:test', 'copy:js:bin', 'clean:js:test', 'clean:js:bin', 'lint', 'complexity', cb);
+    plugins.runSequence('clean:js', 'coffee', 'copy:js:test', 'copy:js:bin', 'clean:js:test', 'clean:js:bin', 'lint', 'complexity', 'shebang', cb);
 });
 
 
