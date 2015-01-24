@@ -1,3 +1,11 @@
+### 1.0.3 (2015-01-24)
+
+
+#### Features
+
+* **mydependencies:** agregando shebang line para node ([7d2619e9](https://github.com/jansanchez/mydependencies.git/commit/7d2619e918262c3dfb721fdd9d71c64ca5def525))
+
+
 ### 1.0.2 (2015-01-23)
 
 
