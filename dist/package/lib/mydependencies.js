@@ -37,7 +37,6 @@ MyDependencies = function(opts) {
 };
 
 MyDependencies.prototype.readFile = function(filepath) {
-  console.log(process.cwd() + '/' + filepath);
   this.packageJson = JSON.parse(fs.readFileSync(process.cwd() + '/' + filepath, 'utf8'));
 };
 
