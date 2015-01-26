@@ -61,7 +61,7 @@ MyDependencies::readKeys = (dependency) ->
 	for key of dependency
 		if (dependency.hasOwnProperty(key))
 			@counter++
-			@output += "  " + chalk.cyan(" " + key) + "\n"
+			@output += "  " + chalk.cyan(" " + key) + " : " + chalk.yellow(dependency[key]) + "\n"
 	return
 
 MyDependencies::writeMyDependencies = () ->
