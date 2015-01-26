@@ -1,3 +1,11 @@
+### 1.0.4 (2015-01-26)
+
+
+#### Features
+
+* **mydependencies:** agrego mensaje de aviso cuando no exista package.json ([ba79a0cc](https://github.com/jansanchez/mydependencies.git/commit/ba79a0cc19d8d864d841983f2b1aa256f540ad88), closes [#1](https://github.com/jansanchez/mydependencies.git/issues/1))
+
+
 ### 1.0.3 (2015-01-24)
 
 
