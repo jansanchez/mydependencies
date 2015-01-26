@@ -29,15 +29,33 @@ MyDependencies = function(opts) {
   this.counter = 0;
   this.output = "";
   this.namesOfMyDependencies = this.settings.namesOfMyDependencies;
-  this.readFile('package.json');
-  this.getMyDependencies();
-  this.readMyDependencies();
-  this.writeMyDependencies();
+  if (this.readFile("package.json")) {
+    this.getMyDependencies();
+    this.readMyDependencies();
+    this.writeMyDependencies();
+  }
   return this;
 };
 
 MyDependencies.prototype.readFile = function(filepath) {
-  this.packageJson = JSON.parse(fs.readFileSync(process.cwd() + '/' + filepath, 'utf8'));
+  var contentFile, err, error;
+  error = {
+    status: false
+  };
+  try {
+    contentFile = fs.readFileSync(process.cwd() + "/" + filepath, "utf8");
+  } catch (_error) {
+    err = _error;
+    error.status = true;
+    error.path = err.path;
+  }
+  if (error.status) {
+    console.log(chalk.red("No such file or directory: '" + error.path + "'"));
+    return false;
+  } else {
+    this.packageJson = JSON.parse(contentFile);
+    return true;
+  }
 };
 
 MyDependencies.prototype.getMyDependencies = function() {
@@ -81,7 +99,7 @@ MyDependencies.prototype.readKeys = function(dependency) {
 
 MyDependencies.prototype.writeMyDependencies = function() {
   this.output += "\n" + " - - - - - - - - - - - - - - - - - - - -" + "\n";
-  this.output += chalk.green.bold(' We have found ' + this.counter + ' dependencies!') + "\n";
+  this.output += chalk.green.bold(" We have found " + this.counter + " dependencies!") + "\n";
   console.log(this.output);
 };
 

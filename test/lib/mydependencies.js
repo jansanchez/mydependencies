@@ -6,7 +6,7 @@ Test: mydependencies
 /*
  * requires.
  */
-var Dependencies, data, dependencies, fs;
+var Dependencies, dependencies, fs;
 
 fs = require('fs');
 
@@ -18,8 +18,6 @@ Dependencies = require('../../dist/package/lib/mydependencies');
  */
 
 dependencies = null;
-
-data = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 
 
 /*
@@ -54,8 +52,11 @@ describe('Dependencies', function() {
     });
   });
   describe('Other Scenarios', function() {
-    it('dependencies.pushMyDependencies.', function() {
+    it('dependencies.pushMyDependencies should be false.', function() {
       return dependencies.pushMyDependencies({}).should.be.equal(false);
+    });
+    it('dependencies.readFile should be false.', function() {
+      return dependencies.readFile("package2.json").should.be.equal(false);
     });
   });
 });

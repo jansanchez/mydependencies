@@ -27,15 +27,28 @@ MyDependencies = (opts) ->
 	@output = ""
 	@namesOfMyDependencies = @settings.namesOfMyDependencies
 
-	@readFile('package.json')
-	@getMyDependencies()
-	@readMyDependencies()
-	@writeMyDependencies()
+	if @readFile("package.json")
+		@getMyDependencies()
+		@readMyDependencies()
+		@writeMyDependencies()
 
 	return @
 
 MyDependencies::readFile = (filepath) ->
-	@packageJson = JSON.parse(fs.readFileSync(process.cwd() + '/' + filepath, 'utf8'))
+	error = { status: false }
+
+	try
+		contentFile = fs.readFileSync(process.cwd() + "/" + filepath, "utf8")
+	catch err
+		error.status = true
+		error.path = err.path
+
+	if error.status
+		console.log(chalk.red("No such file or directory: '" + error.path + "'"))
+		return false
+	else
+		@packageJson = JSON.parse(contentFile)
+		return true
 	return
 
 MyDependencies::getMyDependencies = () ->
@@ -66,7 +79,7 @@ MyDependencies::readKeys = (dependency) ->
 
 MyDependencies::writeMyDependencies = () ->
 	@output += "\n" + " - - - - - - - - - - - - - - - - - - - -" + "\n"
-	@output += chalk.green.bold(' We have found ' + @counter + ' dependencies!') + "\n"
+	@output += chalk.green.bold(" We have found " + @counter + " dependencies!") + "\n"
 	console.log(@output)
 	return
 

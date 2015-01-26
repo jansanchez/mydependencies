@@ -16,8 +16,6 @@ Dependencies = require('../../dist/package/lib/mydependencies')
 ###
 
 dependencies = null
-data = JSON.parse(fs.readFileSync('./package.json', 'utf8'))
-
 
 ###
 # Instantiating.
@@ -63,8 +61,12 @@ describe('Dependencies', () ->
 
 	describe('Other Scenarios', () ->
 
-		it('dependencies.pushMyDependencies.', () ->
+		it('dependencies.pushMyDependencies should be false.', () ->
 			dependencies.pushMyDependencies({}).should.be.equal(false)
+		)
+
+		it('dependencies.readFile should be false.', () ->
+			dependencies.readFile("package2.json").should.be.equal(false)
 		)
 
 		return
