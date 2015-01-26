@@ -18,14 +18,25 @@ npm install -g mydependencies
 mydependencies
 ```
 
+![mydependencies](docs/images/mydependencies.png)
+
 ```
 mydependencies --dev
 ```
+
+![mydependencies --dev](docs/images/mydependencies-dev.png)
 
 ```
 mydependencies --dep
 ```
 
+![mydependencies --dep](docs/images/mydependencies-dep.png)
+
+```
+mydependencies -h
+```
+
+![mydependencies -h](docs/images/mydependencies-help.png)
 
 [downloads-image]: http://img.shields.io/npm/dm/mydependencies.svg
 [npm-url]: https://www.npmjs.org/package/mydependencies
