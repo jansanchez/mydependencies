@@ -38,14 +38,14 @@ MyDependencies = function(opts) {
 };
 
 MyDependencies.prototype.readFile = function(filepath) {
-  var contentFile, err, error;
+  var contentFile, err, error, error1;
   error = {
     status: false
   };
   try {
     contentFile = fs.readFileSync(process.cwd() + "/" + filepath, "utf8");
-  } catch (_error) {
-    err = _error;
+  } catch (error1) {
+    err = error1;
     error.status = true;
     error.path = err.path;
   }
@@ -59,10 +59,10 @@ MyDependencies.prototype.readFile = function(filepath) {
 };
 
 MyDependencies.prototype.getMyDependencies = function() {
-  var dependencyName, _i, _len, _ref;
-  _ref = this.namesOfMyDependencies;
-  for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-    dependencyName = _ref[_i];
+  var dependencyName, j, len, ref;
+  ref = this.namesOfMyDependencies;
+  for (j = 0, len = ref.length; j < len; j++) {
+    dependencyName = ref[j];
     this.pushMyDependencies(this.packageJson[dependencyName]);
   }
 };
@@ -78,10 +78,10 @@ MyDependencies.prototype.pushMyDependencies = function(dependencyObject) {
 };
 
 MyDependencies.prototype.readMyDependencies = function() {
-  var dependency, i, _i, _len, _ref;
-  _ref = this.ArrayDependencies;
-  for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
-    dependency = _ref[i];
+  var dependency, i, j, len, ref;
+  ref = this.ArrayDependencies;
+  for (i = j = 0, len = ref.length; j < len; i = ++j) {
+    dependency = ref[i];
     this.output += "\n" + " " + this.namesOfMyDependencies[i] + ": " + "\n\n";
     this.readKeys(dependency);
   }
